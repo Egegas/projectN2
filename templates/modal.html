@@ -1,0 +1,61 @@
+<div class="modal fade" id="coinsselectedmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">selected coins to report</h5>
+      </div>
+      <div class="modal-body">
+          <div class="exteracoinselected mb-3">you chose to add the coin {name-coin-5} the maximum number of coins to report is five, remove one </div>
+        <div class="row">
+            <h5 class="col-6"> {name-coin-0}</h5>
+            <div class="col-1">
+                <label class="switch">
+                    <input type="checkbox"checked onclick="coinReport('{coin-id-selected-0}',this)">
+                    <span class="slider round"></span>
+                </label>
+             </div>
+        </div>
+        <div class="row">
+            <h5 class="col-6"> {name-coin-1}</h5>
+            <div class="col-1">
+            <label class="switch">
+                <input type="checkbox" checked onclick="coinReport('{coin-id-selected-1}',this)">
+                <span class="slider round"></span>
+            </label>
+        </div>
+        </div>
+        <div class="row">
+            <h5 class="col-6"> {name-coin-2}</h5>
+            <div class="col-1">
+            <label class="switch">
+                <input type="checkbox" checked onclick="coinReport('{coin-id-selected-2}',this)">
+                <span class="slider round"></span>
+            </label>
+        </div>
+        </div>
+        <div class="row">
+            <h5 class="col-6"> {name-coin-3}</h5>
+            <div class="col-1">
+            <label class="switch">
+                <input type="checkbox" checked onclick="coinReport('{coin-id-selected-3}',this)">
+                <span class="slider round"></span>
+            </label>
+        </div>
+        </div>
+        <div class="row">
+            <h5 class="col-6"> {name-coin-4}</h5>
+            <div class="col-1">
+            <label class="switch">
+                <input type="checkbox" checked onclick="coinReport('{coin-id-selected-4}',this)">
+                <span class="slider round"></span>
+            </label>
+        </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="coinReportDelete('{coin-id-selected-5}')">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

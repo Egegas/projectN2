@@ -1,0 +1,18 @@
+<div class="card col-xl-4 col-md-4 col-sm-12" id="{coin-id}">
+    <div class="card-body">
+        <label class="switch">
+            <input type="checkbox" onclick="coinReport('{coin-id}',this)">
+            <span class="slider round"></span>
+          </label>
+      <h5 class="card-title">{coin-symbol}</h5>
+      <h6 class="card-subtitle mb-2 text-muted">{coin-name}</h6>
+      <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapse{coin-id}" aria-expanded="false" aria-controls="collapse{coin-id}" onclick="getCoinMoreInfo('{coin-id}')">
+       more info
+      </button>
+    <div class="collapse" id="collapse{coin-id}">
+      <div class="card card-body more-info">
+
+      </div>
+    </div>
+    </div>
+</div>
