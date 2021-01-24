@@ -171,7 +171,6 @@ function renderMoreInfo(htmlRes, moreinfo, coinId) {
     htmlRes = htmlRes.replace("{usd}", moreinfo.market_data.current_price.usd);
     htmlRes = htmlRes.replace("{eur}", moreinfo.market_data.current_price.eur);
     htmlRes = htmlRes.replace("{ils}", moreinfo.market_data.current_price.ils);
-    $(`#${coinId} .more-info`).html("");
     $(`#${coinId} .more-info`).append(htmlRes);
 
 }
@@ -256,7 +255,8 @@ function coinSearch() {
     for (let i = 0; i < cardscoin.length; i++) {
         if (cardscoin[i].textContent != $('#searchinput').val()) {
 
-            $(cardscoin[i].parentNode.parentNode).hide()
+            $(cardscoin[i].parentNode.parentNode).hide();
+            $('#dynamic').hide();
             $('#search').addClass('d-none');
             $('#clrsearch').removeClass('d-none')
         }
