@@ -62,7 +62,7 @@ function homeInit() {
     $(`#about a`).removeClass().addClass(`btn btn-light`);
     $(`#body-container`).html("");
     clearInterval(datainterval);
-
+    $('#body-container').append(`<div class="col-12 text-center"><img class="loader m-auto col-4" src="images/loader.gif" alt=""></img></div>`); 
     getAllCoins().then(allCoinsRes => allCoinsHtml(allCoinsRes));
 }
 function reporteInit() {
