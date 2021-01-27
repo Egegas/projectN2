@@ -1,4 +1,4 @@
-var datacoinToReort = [[],[],[],[],[]];
+var datacoinToReort = [[], [], [], [], []];
 var coinsToreport = [];
 var coinsSymbolReport = [];
 var datareportconfig = [
@@ -7,24 +7,24 @@ var datareportconfig = [
         name: "",
         showInLegend: true,
         xValueFormatString: "MMM YYYY",
-        yValueFormatString: "#,##0",
+        yValueFormatString: "$#,##0.####",
         dataPoints: datacoinToReort[0]
-},
+    },
     {
         type: "spline",
         name: "",
         axisYType: "secondary",
         showInLegend: true,
         xValueFormatString: "MMM YYYY",
-        yValueFormatString: "$#,##0.#",
+        yValueFormatString: "$#,##0.####",
         dataPoints: datacoinToReort[1]
-},
+    },
     {
         type: "spline",
         name: "",
         showInLegend: true,
         xValueFormatString: "MMM YYYY",
-        yValueFormatString: "#,##0",
+        yValueFormatString: "$#,##0.####",
         dataPoints: datacoinToReort[2]
     },
     {
@@ -32,7 +32,7 @@ var datareportconfig = [
         name: "",
         showInLegend: true,
         xValueFormatString: "MMM YYYY",
-        yValueFormatString: "#,##0",
+        yValueFormatString: "$#,##0.####",
         dataPoints: datacoinToReort[3]
     },
     {
@@ -41,20 +41,20 @@ var datareportconfig = [
         axisYType: "secondary",
         showInLegend: true,
         xValueFormatString: "MMM YYYY",
-        yValueFormatString: "$#,##0.#",
+        yValueFormatString: "$#,##0.####",
         dataPoints: datacoinToReort[4]
     }
 
 ];
-var reportTitle="";
+var reportTitle = "";
 var datainterval;
 
 appInit()
 
-function appInit(){
+function appInit() {
     $(`#home a`).removeClass(`btn btn-light`).addClass(`btn btn-primary`);
-    $('#body-container').append(`<div class="col-12 text-center"><img class="loader m-auto col-4" src="images/loader.gif" alt=""></img></div>`); 
-    getAllCoins().then(allCoinsRes => allCoinsHtml(allCoinsRes));   
+    $('#body-container').append(`<div class="col-12 text-center"><img class="loader m-auto col-4" src="images/loader.gif" alt=""></img></div>`);
+    getAllCoins().then(allCoinsRes => allCoinsHtml(allCoinsRes));
 }
 function homeInit() {
     $(`#home a`).removeClass(`btn btn-light`).addClass(`btn btn-primary`);
@@ -62,7 +62,7 @@ function homeInit() {
     $(`#about a`).removeClass().addClass(`btn btn-light`);
     $(`#body-container`).html("");
     clearInterval(datainterval);
-    $('#body-container').append(`<div class="col-12 text-center"><img class="loader m-auto col-4" src="images/loader.gif" alt=""></img></div>`); 
+    $('#body-container').append(`<div class="col-12 text-center"><img class="loader m-auto col-4" src="images/loader.gif" alt=""></img></div>`);
     getAllCoins().then(allCoinsRes => allCoinsHtml(allCoinsRes));
 }
 function reporteInit() {
@@ -70,21 +70,21 @@ function reporteInit() {
     $(`#home a`).removeClass().addClass(`btn btn-light`);
     $(`#about a`).removeClass().addClass(`btn btn-light`);
     $(`#body-container`).html("");
-    datacoinToReort[0].length=0;;
-    datacoinToReort[1].length=0;
-    datacoinToReort[2].length=0;
-    datacoinToReort[3].length=0;
-    datacoinToReort[4].length=0;
-    datareportconfig[0].name="";
-    datareportconfig[1].name="";
-    datareportconfig[2].name="";
-    datareportconfig[3].name="";
-    datareportconfig[4].name="";
-    reportTitle="";
+    datacoinToReort[0].length = 0;;
+    datacoinToReort[1].length = 0;
+    datacoinToReort[2].length = 0;
+    datacoinToReort[3].length = 0;
+    datacoinToReort[4].length = 0;
+    datareportconfig[0].name = "";
+    datareportconfig[1].name = "";
+    datareportconfig[2].name = "";
+    datareportconfig[3].name = "";
+    datareportconfig[4].name = "";
+    reportTitle = "";
 
     fetch('templates/report.html').then(res => res.text().then(htmlRes => reportRender(htmlRes)));
-        getReportData().then(reporData => reportDataInit(reporData));
-   datainterval =  setInterval(getdata, 3000);
+    getReportData().then(reporData => reportDataInit(reporData));
+    datainterval = setInterval(getdata, 3000);
 
 }
 function aboutInit() {
@@ -92,6 +92,7 @@ function aboutInit() {
     $(`#reports a`).removeClass().addClass(`btn btn-light`);
     $(`#home a`).removeClass().addClass(`btn btn-light`);
     $(`#body-container`).html("");
+    clearInterval(datainterval);
     fetch('templates/about.html').then(res => res.text().then(htmlRes => aboutRender(htmlRes)));
 
 
@@ -117,10 +118,10 @@ function renderCoinCard(htmlRes, allcoins) {
         html = html.replace("{coin-name}", allcoins[i].name);
         allCoinsHtml += html
     }
-    if($('.loader')){
-        $('.loader').fadeOut("slow");  
+    if ($('.loader')) {
+        $('.loader').fadeOut("slow");
     }
-    $('#body-container').attr("style","display:none")
+    $('#body-container').attr("style", "display:none")
     $('#body-container').append(allCoinsHtml);
     $('#body-container').fadeIn("slow")
 
@@ -135,8 +136,8 @@ function getCoinMoreInfo(coinId) {
         var dif = (currentTime - new Date(moreInfoRecord.time));
         var dif = Math.round((dif / 1000) / 60);
         if (dif <= 2) {
-           // $(`#collapse${coinId}`).collapse('show');render
-           fetch('templates/moreInfo.html').then(res => res.text().then(htmlRes => renderMoreInfoexist(htmlRes,  moreInfoRecord, coinId))); 
+            // $(`#collapse${coinId}`).collapse('show');render
+            fetch('templates/moreInfo.html').then(res => res.text().then(htmlRes => renderMoreInfoexist(htmlRes, moreInfoRecord, coinId)));
         }
         else {
             fetch('templates/progressBar.html').then(res => res.text().then(htmlRes => renderProgressBar(htmlRes, coinId)));
@@ -249,21 +250,21 @@ function coinReportDelete(coinId) {
 }
 
 function coinSearch() {
-        // $(`.card-title:not(:contains(${$('#searchinput').val()}))`).parent().parent().hide()
-    if ($('#searchinput').val() != ""){
-            let cardscoin = $(`.card-title`);
-    for (let i = 0; i < cardscoin.length; i++) {
-        if (cardscoin[i].textContent != $('#searchinput').val()) {
+    // $(`.card-title:not(:contains(${$('#searchinput').val()}))`).parent().parent().hide()
+    if ($('#searchinput').val() != "") {
+        let cardscoin = $(`.card-title`);
+        for (let i = 0; i < cardscoin.length; i++) {
+            if (cardscoin[i].textContent != $('#searchinput').val()) {
 
-            $(cardscoin[i].parentNode.parentNode).hide();
-            $('#dynamic').hide();
-            $('#search').addClass('d-none');
-            $('#clrsearch').removeClass('d-none')
+                $(cardscoin[i].parentNode.parentNode).hide();
+                $('#dynamic').hide();
+                $('#search').addClass('d-none');
+                $('#clrsearch').removeClass('d-none')
+            }
         }
+        $('#searchinput').val("")
     }
-    $('#searchinput').val("")
-    }
-    else{
+    else {
         alert("no value in search input")
     }
 
@@ -271,7 +272,7 @@ function coinSearch() {
 
 }
 
-function coinSearchclr(){
+function coinSearchclr() {
     $('.card.col-xl-4.col-md-4.col-sm-12').removeAttr('style');
     $('#clrsearch').addClass('d-none');
     $('#search').removeClass('d-none')
@@ -302,7 +303,8 @@ function reportRender(htmlRes) {
         },
         toolTip: {
             shared: true,
-            content: "{name}: {y}$"
+            //content: "{name}: {y}$"
+            Content: "{x}<br/> <span style='\"'color: {color};'\"'>{name}</span>, <strong>{y}</strong>",
         },
         legend: {
             cursor: "pointer",
@@ -327,38 +329,38 @@ function getReportData() {
     return fetch(`https://min-api.cryptocompare.com/data/pricemulti?fsyms=${coinsSymbolReport.toString()}&tsyms=USD`).then(res => res.json());
 }
 
-function getdata(){
+function getdata() {
     getReportData().then(reporData => reportDataInit(reporData));
 }
 
 function reportDataInit(reporData) {
-options.title.text = `${ coinsSymbolReport.toString()} to usd`;
+    options.title.text = `${coinsSymbolReport.toString()} to usd`;
     console.log(reporData);
     for (let i = 0; i < Object.keys(reporData).length; i++) {
         datareportconfig[i].name = Object.keys(reporData)[i];
 
-       datacoinToReort[i].push({ x: new Date(), y:  reporData[Object.keys(reporData)[i]].USD });
+        datacoinToReort[i].push({ x: new Date(), y: reporData[Object.keys(reporData)[i]].USD });
 
     }
     $("#chartContainer").CanvasJSChart().render()
-   
-    
+
+
 }
 
-function toggleSelected(){
-for (let i = 0; i < coinsToreport.length; i++) {
-    $(`#${coinsToreport[i]} input`).prop("checked", true);
-}
+function toggleSelected() {
+    for (let i = 0; i < coinsToreport.length; i++) {
+        $(`#${coinsToreport[i]} input`).prop("checked", true);
+    }
 
 }
 
 function aboutRender(htmlRes) {
-let proyectText = `In this project you need to develop a single page that accesses information and reports from the world of virtual commerce.
+    let proyectText = `In this project you need to develop a single page that accesses information and reports from the world of virtual commerce.
                   The world of virtual trading has become very popular in recent years, however a variety of API’S have been created that provide free information (usually in a one-time registration) about the state of the currencies, price, history, sale and buy and more.
                   The app you are going to build here is a client side app only that contains calls to various API’s.
                   All information is stored solely on the customer side, there is no information required to store in the backend & Database.`;
 
-let aboutMySelf = `My name is Ezequiel Eizner, 39 years old. Born in Argentina and now a Jerusalemite
+    let aboutMySelf = `My name is Ezequiel Eizner, 39 years old. Born in Argentina and now a Jerusalemite
                    Married to Saray and father of Lavi.
                    Works at the Bank of Israel as a software deloveper.
                    I received my training in the field from my job at Bezeq, where I worked for about 10 years. For the past 4 years, i worked at the Bank in the field of SharePoint
